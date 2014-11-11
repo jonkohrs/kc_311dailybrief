@@ -8,6 +8,7 @@ header{
 
 #legend-newly-opened{
 	float:left;
+	padding: 0px;
 }
 
 #legend-newly-closed{
@@ -47,7 +48,7 @@ header img {
   padding: 15px 7px 0 2.5%;
   float: left;
 }
-header img.beta { 
+header img.beta {
   float:left;
   position:relative;
   top:-10px;
@@ -159,7 +160,7 @@ header a:hover {
 #legend section#legend-open.active .display-max {
   margin-top: -15px;
   font-size: 75%
-}	
+}
 
 #legend section#legend-newly-opened.active * {
   color: orange;
@@ -176,25 +177,25 @@ header a:hover {
   section#legend-open {
     clear: left;
   }
-  
+
   section#legend-info {
     width: 95%;
     padding: 0 2.5%;
   }
-  
+
   section#legend-open,
   section#legend-newly-opened,
   section#legend-newly-closed {
     width: 28.33333%;
     padding: 0 2.5%;
   }
-  
+
 
   #legend section#legend-info p {
     margin-bottom: 0;
     display: inline;
   }
-  
+
 }
 
 @media only screen and (max-width: 700px) and (min-width: 601px) {
@@ -208,7 +209,7 @@ header a:hover {
   header p {
     font-size: 75%;
     padding-top: 34px;
-    
+
   }
 }
 
@@ -216,28 +217,28 @@ header a:hover {
   header {
     text-align: center;
   }
-  
+
   header img {
     margin: 0 auto;
     padding: 4px 0 0 0;
     float: none;
   }
-  
+
   header p {
     margin: -5px auto 0;
     padding: 0px 0 0 0;
     float: none;
     font-size: 80%;
   }
-  
+
   #filters {
-    
+
   }
 
   section#legend-newly-opened {
     clear: left;
   }
-  
+
   #legend > section {
     float: left;
     width: 45%;
