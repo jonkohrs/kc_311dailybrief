@@ -78,6 +78,7 @@ li.capitalize {
 	right: 0;
 	bottom: 0;
 	max-width: 100%;
+  max-height: 100%;
 	z-index: -1;
 }
 
@@ -90,7 +91,7 @@ li.capitalize {
 
 .row {
   margin-left: 0px !important;
-  margin-right: opx !important;
+  margin-right: 0px !important;
 }
 
 .legend-newly-opened{
@@ -153,6 +154,25 @@ li.capitalize {
 .legend-newly-closed.active * {
   color: #114ab1;
   border-color: #114ab1;
+}
+
+/* Summary Table */
+
+#summary {
+  background: white;
+  box-shadow: 0px 0px 5px #444;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Links */
+
+#links {
+  background: white;
+  box-shadow: 0px 0px 5px #444;
+  left: 0;
+  right: 0;
 }
 
 @media only screen and (max-width: 960px) and (min-width: 551px) {
