@@ -41,7 +41,7 @@
 
   <!-- Primary Page Layout
   ================================================== -->
-<div id="view">
+<div id="container">
 
     <div class="row" id="header">
       <a href=""><img src="images/daily_brief.png"></a>
@@ -53,9 +53,10 @@
 
     <div class="row" id="filter"></div>
 
-    <div class="row leaflet-container leaflet-fade-anim" id="map"></div>
+    <div class="row leaflet-container leaflet-fade-anim" id="map">
+    </div>
 
-    <div class="row col-md-12" id="legend">
+    <div class="row" id="legend">
 
       <div class="col-md-4 legend-info">
         <h1>Kansas City</h1>
@@ -77,33 +78,37 @@
     </div>
 
     <div class="row" id="summary">
-      <table class="table">
-        <tr>
-          <th>Summary</th>
-          <th>Current</th>
-          <th>Yesterday</th>
-          <th>Last Week</th>
-        </tr>
-        <tr>
-          <th>Opened:</th>
-          <td>999</td>
-          <td>999</td>
-          <td>999</td>
-        </tr>
-        <tr>
-          <th>Closed</th>
-          <td>999</td>
-          <td>999</td>
-          <td>999</td>
-        </tr>
-      </table>
+      <div class="col-md-12">
+        <table class="table">
+          <tr>
+            <th>Summary</th>
+            <th>Current</th>
+            <th>Yesterday</th>
+            <th>Last Week</th>
+          </tr>
+          <tr>
+            <th>Opened:</th>
+            <td>999</td>
+            <td>999</td>
+            <td>999</td>
+          </tr>
+          <tr>
+            <th>Closed</th>
+            <td>999</td>
+            <td>999</td>
+            <td>999</td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <div class="row" id="links">
-      <h5>Other sites:</h5>
-      <p><a href="http://http://kcmo.gov/311/">Basic 311 Info</a></p>
-      <p><a href="https://data.kcmo.org/311/Daily-Call-Activity-Report/timy-j7ep">Daily Call Activity</a></p>
-      <p><a href="https://data.kcmo.org/">Open Data KCMO</a></p>
+      <div class="col-md-12">
+        <h5>Other sites:</h5>
+        <p><a href="http://http://kcmo.gov/311/">Basic 311 Info</a></p>
+        <p><a href="https://data.kcmo.org/311/Daily-Call-Activity-Report/timy-j7ep">Daily Call Activity</a></p>
+        <p><a href="https://data.kcmo.org/">Open Data KCMO</a></p>
+      </div>
     </div>
 
     <div class="row" id="case-info">
@@ -111,6 +116,7 @@
     </div>
 
     <div class="footer-menu">
+      <div class="col-md-12">
 	<img id="kc311-logo" src="images/KC311_logo.png" width="108" height="97" alt="KC311 Logo"> 
 	<div class="311_link">
 		<a href="http://kcmo.gov/311/">
@@ -118,6 +124,7 @@
 		<div><strong>KCMO.GOV</strong></div>
 		</a>
 	</div>
+      </div>
     </div>
 </div>
 
