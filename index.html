@@ -21,8 +21,6 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
   <!-- Mobile Specific Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -41,7 +39,7 @@
 
   <!-- Primary Page Layout
   ================================================== -->
-<div class="container-fluid"
+<div id="container">
 
     <div class="row" id="header">
       <a href=""><img src="images/daily_brief.png"></a>
@@ -53,9 +51,10 @@
 
     <div class="row" id="filter"></div>
 
-    <div class="row" id="map"></div>
+    <div class="row leaflet-container leaflet-fade-anim" id="map">
+    </div>
 
-    <div class="row col-md-12" id="legend">
+    <div class="row" id="legend">
 
       <div class="col-md-4 legend-info">
         <h1>Kansas City</h1>
@@ -75,14 +74,65 @@
       </div>
 
     </div>
+
+    <div class="row" id="summary">
+      <div class="col-md-12">
+        <table class="table">
+          <tr>
+            <th>Summary</th>
+            <th>Current</th>
+            <th>Yesterday</th>
+            <th>Last Week</th>
+          </tr>
+          <tr>
+            <th>Opened:</th>
+            <td>999</td>
+            <td>999</td>
+            <td>999</td>
+          </tr>
+          <tr>
+            <th>Closed</th>
+            <td>999</td>
+            <td>999</td>
+            <td>999</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row" id="links">
+      <div class="col-md-12">
+        <h5>Other sites:</h5>
+        <p><a href="http://http://kcmo.gov/311/">Basic 311 Info</a></p>
+        <p><a href="https://data.kcmo.org/311/Daily-Call-Activity-Report/timy-j7ep">Daily Call Activity</a></p>
+        <p><a href="https://data.kcmo.org/">Open Data KCMO</a></p>
+      </div>
+    </div>
+
+    <div class="row" id="case-info">
+      
+    </div>
+
+    <div class="footer-menu">
+      <div class="col-md-12">
+	<img id="kc311-logo" src="images/KC311_logo.png" width="108" height="97" alt="KC311 Logo"> 
+	<div class="311_link">
+		<a href="http://kcmo.gov/311/">
+		<div><strong>311</strong></div>
+		<div><strong>KCMO.GOV</strong></div>
+		</a>
+	</div>
+      </div>
+    </div>
 </div>
 
   <!-- JS
   ================================================== -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
   <script src="js/kc_311_map.js"></script>
-
 
 <!-- End Document
 ================================================== -->

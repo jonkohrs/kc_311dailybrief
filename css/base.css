@@ -72,13 +72,7 @@ li.capitalize {
 /* Map ID */
 
 #map {
-	position: absolute;
-	left: 0;
-	top: 68px;
-	right: 0;
-	bottom: 0;
-	max-width: 100%;
-	z-index: -1;
+	height: 400px;
 }
 
 /* Legend ID */
@@ -90,7 +84,7 @@ li.capitalize {
 
 .row {
   margin-left: 0px !important;
-  margin-right: opx !important;
+  margin-right: 0px !important;
 }
 
 .legend-newly-opened{
@@ -153,6 +147,25 @@ li.capitalize {
 .legend-newly-closed.active * {
   color: #114ab1;
   border-color: #114ab1;
+}
+
+/* Summary Table */
+
+#summary {
+  background: white;
+  box-shadow: 0px 0px 5px #444;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Links */
+
+#links {
+  background: white;
+  box-shadow: 0px 0px 5px #444;
+  left: 0;
+  right: 0;
 }
 
 @media only screen and (max-width: 960px) and (min-width: 551px) {
@@ -298,4 +311,37 @@ a.leaflet-control-center:hover{
 
 .leaflet-container .leaflet-control-attribution {
   margin-bottom: 130px;
+}
+
+.footer-menu {
+	width:80px;
+	height:80px;
+	position:absolute;
+	top:100%;
+	left:5%;
+	margin-top:-10%;
+	background:#44C0C1;
+	box-shadow: 2px 2px 5px #777;
+	-webkit-transition: width 1.5s; /* For Safari 3.1 to 6.0 */
+	    transition: width 1.5s;
+}
+
+.footer-menu:hover {
+    width: 200px;
+}
+
+#kc311-logo{
+	position:absolute;
+	width:50px;
+	height:auto;
+	top: 50%;
+	transform: translate(15px, -50%) 
+}
+
+.311_link {
+	color:#fff;
+	width:120px;
+	height:80px;
+	margin-left:85px;
+	position:absolute;
 }

@@ -33,8 +33,7 @@ function add_yesterdays_markers(open_or_closed){
   var yesterday = output+'T00:00:00'
   var yesterdays_cases = $.getJSON("http://data.kcmo.org/resource/7at3-sxhp.json?$where="+open_or_closed+"='"+yesterday+"'"
     , function(data){
-      // console.log(data);
-      // console.log(data.length);
+       console.log(data.length);
       if (open_or_closed == 'creation_date'){
         $('#legend-newly-opened .value').html(data.length)
       }
@@ -43,11 +42,13 @@ function add_yesterdays_markers(open_or_closed){
       }
 
       for (i in data){
-        var latitude = data[i].address_with_geocode.latitude;
-        var longitude = data[i].address_with_geocode.longitude;
-        markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
-        var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type+', '+data[i].creation_date);
-        open_cases_list.push(marker);
+        if ( "address_with_geocode" in data[i] ) {             // KCMO does not always return the geocoded address.
+          var latitude = data[i].address_with_geocode.latitude;
+          var longitude = data[i].address_with_geocode.longitude;
+          markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
+          var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type+', '+data[i].creation_date);
+          open_cases_list.push(marker);
+        }
       }
       var open_cases_layer = new L.LayerGroup(open_cases_list);
       map.addLayer(open_cases_layer);

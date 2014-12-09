@@ -2,7 +2,7 @@ kc_311dailybrief
 ================
 
 What happened yesterday in Kansas City, MO's 311.  
-This is a fork of https://github.com/ondrae/kc_311dailybrief 
+This is a fork of https://github.com/ondrae/kc_311dailybrief. 
 
 See the bottom of this document for a concept mockup.
 
