@@ -82,6 +82,10 @@ li.capitalize {
 	z-index: -1;
 }
 
+.alert {
+  font-size: 2em;
+}
+
 /* Legend ID */
 
 #legend {

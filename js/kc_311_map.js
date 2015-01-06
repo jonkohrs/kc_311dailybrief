@@ -35,7 +35,7 @@ function add_yesterdays_markers(open_or_closed){
     , function(data){
       console.log("data");
       console.log(data.length);
-      if (data.length !== 0){
+      if (data.length === 0){
         $('.legend-newly-opened p').html("N/A");
         $('.legend-newly-closed p').html("N/A");
         $('.alert').html("Sorry, but 311 was closed yesterday. No requests were opened or closed.");
