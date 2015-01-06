@@ -33,13 +33,18 @@ function add_yesterdays_markers(open_or_closed){
   var yesterday = output+'T00:00:00'
   var yesterdays_cases = $.getJSON("http://data.kcmo.org/resource/7at3-sxhp.json?$where="+open_or_closed+"='"+yesterday+"'"
     , function(data){
-      // console.log(data);
-      // console.log(data.length);
-      if (open_or_closed == 'creation_date'){
-        $('#legend-newly-opened .value').html(data.length)
+      console.log("data");
+      console.log(data.length);
+      if (data.length !== 0){
+        $('.legend-newly-opened p').html("N/A");
+        $('.legend-newly-closed p').html("N/A");
+        $('.alert').html("Sorry, but 311 was closed yesterday. No requests were opened or closed.");
       }
-      if (open_or_closed == 'closed_date'){
-        $('#legend-newly-closed .value').html(data.length)
+      else if (open_or_closed == 'creation_date'){
+        $('.legend-newly-opened .value').html(data.length)
+      }
+      else if (open_or_closed == 'closed_date'){
+        $('.legend-newly-closed .value').html(data.length)
       }
 
       for (i in data){
