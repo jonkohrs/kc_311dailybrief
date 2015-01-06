@@ -75,6 +75,10 @@ li.capitalize {
 	height: 400px;
 }
 
+.alert {
+  font-size: 2em;
+}
+
 /* Legend ID */
 
 #legend {
