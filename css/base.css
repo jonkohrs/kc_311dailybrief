@@ -14,7 +14,7 @@ html, body {
 }
 
 li.capitalize {
-  text-transform:capitalize;
+  text-transform:uppercase;
 }
 
 /* Header ID */
@@ -169,9 +169,13 @@ li.capitalize {
 }
 
 ul.horiz {
-display:inline;	
 list-style-type:none;
 text-transform:uppercase;
+}
+
+.horiz li {
+display:inline;	
+
 }
 
 
