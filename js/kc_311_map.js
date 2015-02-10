@@ -52,7 +52,7 @@ function add_yesterdays_markers(open_or_closed){
           var latitude = data[i].address_with_geocode.latitude;
           var longitude = data[i].address_with_geocode.longitude;
           markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
-          var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type+', '+data[i].creation_date);
+          var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type+', '+data[i].creation_date+'<br \><a href="http://data.kcmo.org/resource/7at3-sxhp.json?$where='+open_or_closed+'='+yesterday+'">link</a>');
           open_cases_list.push(marker);
         }
       }
