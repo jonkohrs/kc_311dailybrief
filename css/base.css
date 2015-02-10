@@ -171,11 +171,12 @@ li.capitalize {
 ul.horiz {
 list-style-type:none;
 text-transform:uppercase;
+float:left;
 }
 
 .horiz li {
 display:inline;	
-
+margin-right:25px;
 }
 
 
