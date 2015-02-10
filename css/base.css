@@ -170,6 +170,8 @@ li.capitalize {
 
 ul.horiz {
 display:inline;	
+list-style-type:none;
+text-transform:uppercase;
 }
 
 
