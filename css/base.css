@@ -172,6 +172,7 @@ ul.horiz {
 list-style-type:none;
 text-transform:uppercase;
 float:left;
+margin-bottom:50px;
 }
 
 .horiz li {
