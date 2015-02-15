@@ -22,19 +22,18 @@ if (!Array.prototype.indexOf) {
     };
 }
 
-var Favorite = {
-    cookie_name: 'Favorite',
+var WatchList = {
+    cookie_name: 'WatchList',
     max_items: 50,
 
     /*
      * Update the page
      *   1) Count, name="all"
-     *   2) Checkbox indicating if the case is selected or note  class="Favoritebtn"
+     *   2) Checkbox indicating if the case is selected or note  class="WatchListbtn"
      */
     updateUI: function () {
 
-        alert('ccc');
-        var favorite_cases = this.getFavoriteCasesFromCookie();	// Get the list of selected cases
+        var favorite_cases = this.getWatchListCasesFromCookie();	// Get the list of selected cases
         var number_of_favorite_cases = favorite_cases.length;
         var can_not_add_cases = ( number_of_favorite_cases >= this.max_items);
 
@@ -50,7 +49,7 @@ var Favorite = {
      */
     setCase: function (case_id, is_now_checked) {
 
-        var favorite_cases = this.getFavoriteCasesFromCookie();
+        var favorite_cases = this.getWatchListCasesFromCookie();
 
         if (is_now_checked) {									// Request is to add the case 
             if (favorite_cases.length === 0) {					// No items, then make it the first one
@@ -84,7 +83,7 @@ var Favorite = {
     },
 
     /**
-     * Clear the Favorite
+     * Clear the WatchList
      *    1) Remove the cookie
      *    2) Upate the page
      */
@@ -95,8 +94,8 @@ var Favorite = {
 
     },
 
-    getFavoriteCasesFromCookie: function () {
-        var id_list = String(this.getFavoriteCookie());
+    getWatchListCasesFromCookie: function () {
+        var id_list = String(this.getWatchListCookie());
         var favorite_cases = [];
 
         if (id_list.length !== 0) {
@@ -108,7 +107,7 @@ var Favorite = {
     /*
      * Get the cookie containing the selected cases
      */
-    getFavoriteCookie: function () {
+    getWatchListCookie: function () {
         var arg = this.cookie_name + "=";
         var alen = arg.length;
         var clen = document.cookie.length;

@@ -101,7 +101,7 @@ $(function () {
      * Startup the the ability to save Favorite Cases
      */
 
-    Favorite.updateUI();
+    WatchList.updateUI();
 
 
 });
