@@ -56,6 +56,6 @@ bug.
 2. Create a topic branch.
 3. Implement your feature or bug fix.
 4. Commit and push your changes.
-5. Submit a pull request.
+5. Submit a pull request. 
 
 ![Mockup](http://codeforkansascity.github.io//kc_311dailybrief/doc/initial-mockup.png)
