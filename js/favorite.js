@@ -38,8 +38,7 @@ var Favorite = {
         var number_of_favorite_cases = favorite_cases.length;
         var can_not_add_cases = ( number_of_favorite_cases >= this.max_items);
 
-
-        alert('number of favorite cases ' + number_of_favorite_cases);
+        $("#watch-list-count").html(number_of_favorite_cases);
 
     },
 
