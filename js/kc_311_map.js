@@ -94,8 +94,14 @@ $(function () {
 
 
 // Yesterday
-    add_yesterdays_markers('creation_date')
-    add_yesterdays_markers('closed_date')
+    add_yesterdays_markers('creation_date');
+    add_yesterdays_markers('closed_date');
+
+    /**
+     * Startup the the ability to save Favorite Cases
+     */
+
+    Favorite.updateUI();
 
 
 });
