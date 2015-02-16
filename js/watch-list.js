@@ -26,6 +26,14 @@ var WatchList = {
     cookie_name: 'WatchList',
     max_items: 50,
 
+    init: function () {
+
+        $("#clear-watch-list").on('click',function() {
+            WatchList.clear();      // This is the wrong way to do this.
+        });
+
+    },
+
     /*
      * Update the page
      *   1) Count, name="all"
@@ -38,6 +46,34 @@ var WatchList = {
         var can_not_add_cases = ( number_of_favorite_cases >= this.max_items);
 
         $("#watch-list-count").html(number_of_favorite_cases);
+
+    },
+
+    /**
+     * Add case
+     */
+
+    addCase: function (case_id) {
+
+        var favorite_cases = this.getWatchListCasesFromCookie();
+
+        console.dir( favorite_cases );
+        if (favorite_cases.length === 0) {					// No items, then make it the first one
+            favorite_cases[0] = case_id;
+        } else {
+            var n = favorite_cases.indexOf(case_id);
+            if (n !== -1) {									// It already exist,
+                //  do nothing
+            } else {										// Does not exist,
+                n = favorite_cases.length;					//  add it to the end
+                favorite_cases[n] = case_id;
+            }
+        }
+        document.cookie = this.cookie_name + "=" + favorite_cases.join('|') +
+        "; expires=Thu, 01 Jan 2022 00:00:01 GMT; path=/";
+
+        this.updateUI();
+
 
     },
 
@@ -89,9 +125,7 @@ var WatchList = {
      */
     clear: function () {
         document.cookie = this.cookie_name + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/";
-
         this.updateUI();
-
     },
 
     getWatchListCasesFromCookie: function () {

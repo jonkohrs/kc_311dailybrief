@@ -51,12 +51,17 @@ function add_yesterdays_markers(open_or_closed) {
                     var latitude = data[i].address_with_geocode.latitude;
                     var longitude = data[i].address_with_geocode.longitude;
                     markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
-                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type + ', ' + data[i].creation_date + '<br \><a href="http://data.kcmo.org/resource/7at3-sxhp.json?$where=' + open_or_closed + '=' + yesterday + '">link</a>');
+
+                    var watch_html = '<p><a id="add-to-watch-list-' + data[i].case_id + '" type="button" class="btn btn-default" onClick="WatchList.addCase(' + data[i].case_id + ');" href="#">Watch Case</a></p>';
+
+
+                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type + ', ' + data[i].creation_date + '<br \>' + watch_html );
                     open_cases_list.push(marker);
                 }
             }
             var open_cases_layer = new L.LayerGroup(open_cases_list);
             map.addLayer(open_cases_layer);
+
         });
 }
 
@@ -92,6 +97,7 @@ $(function () {
         }
     });
 
+    WatchList.init();
 
 // Yesterday
     add_yesterdays_markers('creation_date');
