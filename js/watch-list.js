@@ -22,6 +22,7 @@ if (!Array.prototype.indexOf) {
     };
 }
 
+
 var WatchList = {
     cookie_name: 'WatchList',
     max_items: 50,
@@ -32,6 +33,8 @@ var WatchList = {
             WatchList.clear();      // This is the wrong way to do this.
         });
 
+        this.favorite_cases = this.getWatchListCasesFromCookie();	// Get the list of selected cases
+
     },
 
     /*
@@ -41,40 +44,94 @@ var WatchList = {
      */
     updateUI: function () {
 
-        var favorite_cases = this.getWatchListCasesFromCookie();	// Get the list of selected cases
-        var number_of_favorite_cases = favorite_cases.length;
+        this.favorite_cases = this.getWatchListCasesFromCookie();	// Get the list of selected cases
+        var number_of_favorite_cases = this.favorite_cases.length;
         var can_not_add_cases = ( number_of_favorite_cases >= this.max_items);
 
         $("#watch-list-count").html(number_of_favorite_cases);
 
     },
 
+    makeWatchHtml: function ( case_id ) {
+
+        var i = case_id;
+
+        i = this.favorite_cases.indexOf( i );
+
+
+        if ( i  < 0 ) {
+            return '<p id="case-id-' + case_id + '">' + this.addCaseButton( case_id ) + '</p>';
+        } else {
+            return '<p id="case-id-' + case_id + '">' + this.removeCaseButton( case_id ) + '</p>';
+        }
+
+    },
+
+    addCaseButton: function( case_id ) {
+        return '<a type="button" class="btn btn-default" onClick="WatchList.addCase(' + case_id + ');" href="#">Watch Case</a>';
+    },
+
+    removeCaseButton: function( case_id ) {
+        return '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" href="#">Un Watch Case</a>';
+    },
+
     /**
      * Add case
      */
 
-    addCase: function (case_id) {
+    addCase: function ( case_id ) {
 
-        var favorite_cases = this.getWatchListCasesFromCookie();
+        this.favorite_cases = this.getWatchListCasesFromCookie();
 
-        console.dir( favorite_cases );
-        if (favorite_cases.length === 0) {					// No items, then make it the first one
-            favorite_cases[0] = case_id;
+        console.dir( this.favorite_cases );
+        if (this.favorite_cases.length === 0) {					// No items, then make it the first one
+            this.favorite_cases[0] = case_id;
+
+
+
         } else {
-            var n = favorite_cases.indexOf(case_id);
+            var n = this.favorite_cases.indexOf(case_id);
             if (n !== -1) {									// It already exist,
                 //  do nothing
             } else {										// Does not exist,
-                n = favorite_cases.length;					//  add it to the end
-                favorite_cases[n] = case_id;
+                n = this.favorite_cases.length;					//  add it to the end
+                this.favorite_cases[n] = case_id;
             }
         }
-        document.cookie = this.cookie_name + "=" + favorite_cases.join('|') +
+        document.cookie = this.cookie_name + "=" + this.favorite_cases.join('|') +
         "; expires=Thu, 01 Jan 2022 00:00:01 GMT; path=/";
+
+        $("#case-id-" + case_id ).html( this.removeCaseButton( case_id ) );
 
         this.updateUI();
 
 
+    },
+
+    removeCase: function ( case_id ) {
+
+        this.favorite_cases = this.getWatchListCasesFromCookie();
+
+        if (this.favorite_cases.length === 0) {					// No items, then there is nothing to remove
+
+        } else {
+
+            var n = this.favorite_cases.indexOf(case_id.toString());
+
+            if (n !== -1) {									// The case is in the list
+                this.favorite_cases.splice(n, 1);					// 	 remove it
+                console.dir( this.favorite_cases );
+            } else {										// The case is not in the list
+                //   do nothing
+            }
+        }
+
+        document.cookie = this.cookie_name + "=" + this.favorite_cases.join('|') +
+        "; expires=Thu, 01 Jan 2022 00:00:01 GMT; path=/";
+
+        $("#case-id-" + case_id ).html( this.addCaseButton( case_id ) );
+
+        this.updateUI();
     },
 
     /*
@@ -85,34 +142,34 @@ var WatchList = {
      */
     setCase: function (case_id, is_now_checked) {
 
-        var favorite_cases = this.getWatchListCasesFromCookie();
+        this.favorite_cases = this.getWatchListCasesFromCookie();
 
         if (is_now_checked) {									// Request is to add the case 
-            if (favorite_cases.length === 0) {					// No items, then make it the first one
-                favorite_cases[0] = case_id;
+            if (this.favorite_cases.length === 0) {					// No items, then make it the first one
+                this.favorite_cases[0] = case_id;
             } else {
-                var n = favorite_cases.indexOf(case_id);
+                var n = this.favorite_cases.indexOf(case_id);
                 if (n !== -1) {									// It already exist, 
                     //  do nothing
                 } else {										// Does not exist,
-                    n = favorite_cases.length;					//  add it to the end
-                    favorite_cases[n] = case_id;
+                    n = this.favorite_cases.length;					//  add it to the end
+                    this.favorite_cases[n] = case_id;
                 }
             }
         } else {												// Request is to remove
-            if (favorite_cases.length === 0) {					// No items, then there is nothing to remove
+            if (this.favorite_cases.length === 0) {					// No items, then there is nothing to remove
 
             } else {
-                var n = favorite_cases.indexOf(case_id);
+                var n = this.favorite_cases.indexOf(case_id);
                 if (n !== -1) {									// The case is in the list
-                    favorite_cases.splice(n, 1);					// 	 remove it
+                    this.favorite_cases.splice(n, 1);					// 	 remove it
                 } else {										// The case is not in the list
                     //   do nothing
                 }
             }
         }
 
-        document.cookie = this.cookie_name + "=" + favorite_cases.join('|') +
+        document.cookie = this.cookie_name + "=" + this.favorite_cases.join('|') +
         "; expires=Thu, 01 Jan 2022 00:00:01 GMT; path=/";
 
         this.updateUI();

@@ -52,7 +52,7 @@ function add_yesterdays_markers(open_or_closed) {
                     var longitude = data[i].address_with_geocode.longitude;
                     markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
 
-                    var watch_html = '<p><a id="add-to-watch-list-' + data[i].case_id + '" type="button" class="btn btn-default" onClick="WatchList.addCase(' + data[i].case_id + ');" href="#">Watch Case</a></p>';
+                    var watch_html = WatchList.makeWatchHtml( data[i].case_id );
 
 
                     var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type + ', ' + data[i].creation_date + '<br \>' + watch_html );
