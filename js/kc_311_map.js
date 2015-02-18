@@ -50,12 +50,19 @@ function add_yesterdays_markers(open_or_closed) {
                 if ("address_with_geocode" in data[i]) {             // KCMO does not always return the geocoded address.
                     var latitude = data[i].address_with_geocode.latitude;
                     var longitude = data[i].address_with_geocode.longitude;
+                    
                     markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
 
                     var watch_html = WatchList.makeWatchHtml( data[i].case_id );
+                    var watch_color = WatchList.getWatchColor();
+                    
+                    var caseId = data[i].case_id;
+                    //console.dir("Matching now....");
+                    //console.dir(caseId);
 
-
-                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type + ', ' + data[i].creation_date + '<br \>' + watch_html );
+                    
+                    //marker_color = marker_blue;
+                    var marker = new L.Marker(markerLocation, {icon: watch_color}).bindPopup(data[i].request_type + ', ' + data[i].creation_date + '<br \>' + watch_html );
                     open_cases_list.push(marker);
                 }
             }

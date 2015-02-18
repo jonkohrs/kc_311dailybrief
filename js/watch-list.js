@@ -22,6 +22,9 @@ if (!Array.prototype.indexOf) {
     };
 }
 
+var color;
+var marker_orange = new L.icon({iconUrl: 'images/marker_orange.png'});
+var marker_blue = new L.icon({iconUrl: 'images/marker_blue.png'});
 
 var WatchList = {
     cookie_name: 'WatchList',
@@ -68,13 +71,19 @@ var WatchList = {
     },
 
     addCaseButton: function( case_id ) {
+        color = marker_orange;
         return '<a type="button" class="btn btn-default" onClick="WatchList.addCase(' + case_id + ');" href="#">Watch Case</a>';
     },
 
     removeCaseButton: function( case_id ) {
+        color = marker_blue;
         return '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" href="#">Un Watch Case</a>';
     },
 
+
+    getWatchColor: function(){
+         return color;
+    },
     /**
      * Add case
      */
