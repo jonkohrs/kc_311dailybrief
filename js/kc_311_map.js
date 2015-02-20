@@ -52,10 +52,21 @@ function add_yesterdays_markers(open_or_closed) {
                     var longitude = data[i].address_with_geocode.longitude;
                     markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
 
-                    var watch_html = WatchList.makeWatchHtml( data[i].case_id );
+                    var watch_html = '';
 
+                    watch_html += displayIt('', data[i].request_type + ' - ' + data[i].status);
+                    watch_html += displayIt('', data[i].street_address);
+                    watch_html += displayIt('Department', data[i].department);
+                    watch_html += displayIt('Work Group', data[i].work_group);
 
-                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(data[i].request_type + ', ' + data[i].creation_date + '<br \>' + watch_html );
+                    var d = new Date(data[i].creation_date);
+                    var creation_date = parseInt(d.getMonth() + 1) + "-" + d.getDate() + "-" + parseInt(d.getFullYear());
+
+                    watch_html += displayIt('Created', creation_date);
+                    watch_html += displayIt('Case ID', data[i].case_id);
+                    watch_html += WatchList.makeWatchHtml(data[i].case_id);
+
+                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(watch_html);
                     open_cases_list.push(marker);
                 }
             }
@@ -63,6 +74,23 @@ function add_yesterdays_markers(open_or_closed) {
             map.addLayer(open_cases_layer);
 
         });
+}
+
+function displayIt(label, value) {
+    if (label) {
+        if (value) {
+            return '                <span style="color: grey">' + label + '</span> ' + value + '<br/>' + "\n";
+        } else {
+            return '';
+        }
+    } else {
+        if (value) {
+            return '                ' + value + '<br/>' + "\n";
+        } else {
+            return '';
+        }
+    }
+
 }
 
 $(function () {

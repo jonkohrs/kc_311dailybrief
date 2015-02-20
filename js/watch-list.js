@@ -29,7 +29,7 @@ var WatchList = {
 
     init: function () {
 
-        $("#clear-watch-list").on('click',function() {
+        $("#clear-watch-list").on('click', function () {
             WatchList.clear();      // This is the wrong way to do this.
         });
 
@@ -50,28 +50,37 @@ var WatchList = {
 
         $("#watch-list-count").html(number_of_favorite_cases);
 
+        console.dir(this.favorite_cases);
+
     },
 
-    makeWatchHtml: function ( case_id ) {
+    makeWatchHtml: function (case_id, parcel_id_no) {
 
         var i = case_id;
 
-        i = this.favorite_cases.indexOf( i );
+        i = this.favorite_cases.indexOf(i);
+
+        var html = '';
+
+        if (i < 0) {
+            html += '<p id="case-id-' + case_id + '">' + this.addCaseButton(case_id);
 
 
-        if ( i  < 0 ) {
-            return '<p id="case-id-' + case_id + '">' + this.addCaseButton( case_id ) + '</p>';
         } else {
-            return '<p id="case-id-' + case_id + '">' + this.removeCaseButton( case_id ) + '</p>';
+            html += '<p id="case-id-' + case_id + '">' + this.removeCaseButton(case_id);
         }
+
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://webfusion.kcmo.org/coldfusionapps/ActionCenterRequest/CaseInfo.cfm?CaseID=' + parcel_id_no + '">More</p>';
+
+        return html;
 
     },
 
-    addCaseButton: function( case_id ) {
+    addCaseButton: function (case_id) {
         return '<a type="button" class="btn btn-default" onClick="WatchList.addCase(' + case_id + ');" href="#">Watch Case</a>';
     },
 
-    removeCaseButton: function( case_id ) {
+    removeCaseButton: function (case_id) {
         return '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" href="#">Un Watch Case</a>';
     },
 
@@ -79,14 +88,13 @@ var WatchList = {
      * Add case
      */
 
-    addCase: function ( case_id ) {
+    addCase: function (case_id) {
 
         this.favorite_cases = this.getWatchListCasesFromCookie();
 
-        console.dir( this.favorite_cases );
+        console.dir(this.favorite_cases);
         if (this.favorite_cases.length === 0) {					// No items, then make it the first one
             this.favorite_cases[0] = case_id;
-
 
 
         } else {
@@ -101,14 +109,14 @@ var WatchList = {
         document.cookie = this.cookie_name + "=" + this.favorite_cases.join('|') +
         "; expires=Thu, 01 Jan 2022 00:00:01 GMT; path=/";
 
-        $("#case-id-" + case_id ).html( this.removeCaseButton( case_id ) );
+        $("#case-id-" + case_id).html(this.removeCaseButton(case_id));
 
         this.updateUI();
 
 
     },
 
-    removeCase: function ( case_id ) {
+    removeCase: function (case_id) {
 
         this.favorite_cases = this.getWatchListCasesFromCookie();
 
@@ -120,7 +128,7 @@ var WatchList = {
 
             if (n !== -1) {									// The case is in the list
                 this.favorite_cases.splice(n, 1);					// 	 remove it
-                console.dir( this.favorite_cases );
+                console.dir(this.favorite_cases);
             } else {										// The case is not in the list
                 //   do nothing
             }
@@ -129,7 +137,7 @@ var WatchList = {
         document.cookie = this.cookie_name + "=" + this.favorite_cases.join('|') +
         "; expires=Thu, 01 Jan 2022 00:00:01 GMT; path=/";
 
-        $("#case-id-" + case_id ).html( this.addCaseButton( case_id ) );
+        $("#case-id-" + case_id).html(this.addCaseButton(case_id));
 
         this.updateUI();
     },
