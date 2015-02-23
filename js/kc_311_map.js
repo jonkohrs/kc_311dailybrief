@@ -12,16 +12,12 @@ map.setView(kansascity, 11).addLayer(mapInfo);
 var open_cases_list = [];
 var marker_orange = new L.icon({iconUrl: 'images/marker_orange.png'});
 var marker_blue = new L.icon({iconUrl: 'images/marker_blue.png'});
+var marker_black = new L.icon({iconUrl: 'images/marker_black.png'});
 
 // create a marker
 
 function add_yesterdays_markers(open_or_closed) {
-    if (open_or_closed == 'creation_date') {
-        var marker_color = marker_orange;
-    }
-    if (open_or_closed == 'closed_date') {
-        var marker_color = marker_blue;
-    }
+
 
     var d = new Date();
     var month = d.getMonth() + 1;
@@ -50,6 +46,7 @@ function add_yesterdays_markers(open_or_closed) {
                 if ("address_with_geocode" in data[i]) {             // KCMO does not always return the geocoded address.
                     var latitude = data[i].address_with_geocode.latitude;
                     var longitude = data[i].address_with_geocode.longitude;
+                    
                     markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
 
                     var watch_html = '';
@@ -66,7 +63,12 @@ function add_yesterdays_markers(open_or_closed) {
                     watch_html += displayIt('Case ID', data[i].case_id);
                     watch_html += WatchList.makeWatchHtml(data[i].case_id);
 
-                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(watch_html);
+                    var marker_color = WatchList.getWatchColor(open_or_closed);
+
+                    var caseId = data[i].case_id;
+
+                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup( watch_html );
+
                     open_cases_list.push(marker);
                 }
             }

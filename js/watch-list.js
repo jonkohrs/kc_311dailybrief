@@ -22,6 +22,9 @@ if (!Array.prototype.indexOf) {
     };
 }
 
+var color;
+var marker_orange = new L.icon({iconUrl: 'images/marker_orange.png'});
+var marker_blue = new L.icon({iconUrl: 'images/marker_blue.png'});
 
 var WatchList = {
     cookie_name: 'WatchList',
@@ -84,6 +87,18 @@ var WatchList = {
         return '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" href="#">Un Watch Case</a>';
     },
 
+
+    getWatchColor: function( open_or_closed ){
+
+        if (open_or_closed == 'creation_date') {
+            var marker_color = marker_orange;
+        }
+        if (open_or_closed == 'closed_date') {
+            var marker_color = marker_blue;
+        }
+
+        return marker_color;
+    },
     /**
      * Add case
      */
