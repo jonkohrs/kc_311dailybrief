@@ -188,3 +188,14 @@ $(function () {
 
 
 });
+
+$(window)
+    .resize(function() { // RESIZE Map div when window size changes
+        var h = $(window)
+                .height(), // Solves the 100% height turning to 0px
+            offsetTop = 250; // Calculate the top offset      // https://github.com/twbs/bootstrap/issues/2475
+        $('#map')
+            .css('height', (h - offsetTop));
+
+    })
+    .resize();
