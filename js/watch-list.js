@@ -53,8 +53,6 @@ var WatchList = {
 
         $("#watch-list-count").html(number_of_favorite_cases);
 
-        console.dir(this.favorite_cases);
-
     },
 
     makeWatchHtml: function (case_id, parcel_id_no) {
@@ -107,7 +105,6 @@ var WatchList = {
 
         this.favorite_cases = this.getWatchListCasesFromCookie();
 
-        console.dir(this.favorite_cases);
         if (this.favorite_cases.length === 0) {					// No items, then make it the first one
             this.favorite_cases[0] = case_id;
 
@@ -143,7 +140,6 @@ var WatchList = {
 
             if (n !== -1) {									// The case is in the list
                 this.favorite_cases.splice(n, 1);					// 	 remove it
-                console.dir(this.favorite_cases);
             } else {										// The case is not in the list
                 //   do nothing
             }
