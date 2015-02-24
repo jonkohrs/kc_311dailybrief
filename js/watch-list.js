@@ -86,7 +86,7 @@ var WatchList = {
     },
 
 
-    getWatchColor: function( open_or_closed ){
+    getWatchColor: function (open_or_closed) {
 
         if (open_or_closed == 'creation_date') {
             var marker_color = marker_orange;

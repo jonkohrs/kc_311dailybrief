@@ -45,7 +45,7 @@ function add_yesterdays_markers(open_or_closed) {
                 if ("address_with_geocode" in data[i]) {             // KCMO does not always return the geocoded address.
                     var latitude = data[i].address_with_geocode.latitude;
                     var longitude = data[i].address_with_geocode.longitude;
-                    
+
                     markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
 
                     var watch_html = '';
@@ -66,7 +66,7 @@ function add_yesterdays_markers(open_or_closed) {
 
                     var caseId = data[i].case_id;
 
-                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup( watch_html );
+                    var marker = new L.Marker(markerLocation, {icon: marker_color}).bindPopup(watch_html);
 
                     open_cases_list.push(marker);
                 }
@@ -77,14 +77,14 @@ function add_yesterdays_markers(open_or_closed) {
         });
 }
 
-function add_watched_markers( ) {
+function add_watched_markers() {
 
     var watched_case_ids = WatchList.getWatchListCasesFromCookie();
 
-    var where='';
-    var sep='';
-    for (i in watched_case_ids ) {
-        where += sep + " case_id = " + watched_case_ids[ i ];
+    var where = '';
+    var sep = '';
+    for (i in watched_case_ids) {
+        where += sep + " case_id = " + watched_case_ids[i];
         sep = " or ";
     }
 
@@ -113,7 +113,7 @@ function add_watched_markers( ) {
 
                     var caseId = data[i].case_id;
 
-                    var marker = new L.Marker(markerLocation, {icon: marker_black}).bindPopup( watch_html );
+                    var marker = new L.Marker(markerLocation, {icon: marker_black}).bindPopup(watch_html);
 
                     watched_cases_list.push(marker);
                 }
