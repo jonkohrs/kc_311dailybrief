@@ -46,16 +46,19 @@ function add_yesterdays_markers(open_or_closed) {
     if (request) {
         request.onload = function () {
             var data = JSON.parse(request.responseText);
-            if (data.length === 0) {
-                $('.legend-newly-opened p').html("N/A");
-                $('.legend-newly-closed p').html("N/A");
-                $('.alert').html("Sorry, but 311 was closed yesterday. No requests were opened or closed.");
-            }
-            else if (open_or_closed == 'creation_date') {
-                $('.legend-newly-opened .value').html(data.length)
-            }
-            else if (open_or_closed == 'closed_date') {
-                $('.legend-newly-closed .value').html(data.length)
+            
+            if (open_or_closed == 'creation_date') {
+                if (data.length === 0) {
+                    $('.legend-newly-opened p').html("N/A");
+                } else {
+                    $('.legend-newly-opened .value').html(data.length)
+                }
+            } else if (open_or_closed == 'closed_date') {
+                if (data.length === 0) {
+                    $('.legend-newly-closed p').html("N/A");
+                } else {
+                    $('.legend-newly-closed .value').html(data.length)
+                }
             }
 
             for (i in data) {
