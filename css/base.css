@@ -4,91 +4,91 @@
  */
 
 html, body {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-	min-width: 960px;
-	font-family: 'Helvetica Neue', Arial, sans-serif;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 960px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 li.capitalize {
-  text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 /* Header ID */
 
-#header{
-	background-color: #3498db;
+#header {
+    background-color: #3498db;
 }
 
 #header {
-	height: 68px;
-	background: #e14747;
-	display: block;
+    height: 68px;
+    background: #e14747;
+    display: block;
 }
 
 #header img {
-  padding: 15px 7px 0 2.5%;
-  float: left;
+    padding: 15px 7px 0 2.5%;
+    float: left;
 }
 
 #header img.beta {
-  float:left;
-  position:relative;
-  top:-10px;
-  left:-55px;
+    float: left;
+    position: relative;
+    top: -10px;
+    left: -55px;
 }
 
 #header p {
-	color: #ffffff;
-	float: left;
-	font-size: 110%;
-	padding-top: 27px;
-	margin: 0px 0px 0px -80px;
+    color: #ffffff;
+    float: left;
+    font-size: 110%;
+    padding-top: 27px;
+    margin: 0px 0px 0px -80px;
 }
 
 #header img.labslogo {
-  float: right;
-  padding: 0px 2.5%;
-  margin-top: 10px;
+    float: right;
+    padding: 0px 2.5%;
+    margin-top: 10px;
 }
 
 #header a {
-  color: #000000;
-  text-decoration: none;
+    color: #000000;
+    text-decoration: none;
 }
 
 #header a:hover {
-  color: #ffffff;
-  text-decoration: underline;
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 .reset {
-  clear: both;
+    clear: both;
 }
 
 /* Map ID */
 
 #map {
-	height: 400px;
+    height: 400px;
 }
 
 #daily-message {
-  font-size: 130%;
+    font-size: 130%;
 }
 
 /* Legend ID */
 
 #legend {
-  background: white;
-  box-shadow: 0px 0px 5px #444;
+    background: white;
+    box-shadow: 0px 0px 5px #444;
 }
 
 .row {
-  margin-left: 0px !important;
-  margin-right: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .legend-newly-opened {
@@ -104,155 +104,152 @@ li.capitalize {
 }
 
 .legend-info h1 {
-  text-transform: uppercase;
-  font-size: 200%;
-  margin: 21px 0px 0px 0px;
+    text-transform: uppercase;
+    font-size: 200%;
+    margin: 21px 0px 0px 0px;
 }
 
 .legend-info p {
-  font-size: 90%;
-  margin: 0px 0px 25px 0px;
-  line-height: 140%;
+    font-size: 90%;
+    margin: 0px 0px 25px 0px;
+    line-height: 140%;
 }
 
 .legend-status {
-  color: #666;
+    color: #666;
 }
 
 .legend-status h1 {
-  text-transform: uppercase;
-  border-bottom:1px solid #888;
-  font-size: 110%;
-  padding-top: 10px;
-  margin-bottom: 5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #888;
+    font-size: 110%;
+    padding-top: 10px;
+    margin-bottom: 5px;
 }
 
 .legend-status p {
-  padding-top: 0px;
-  margin-top:5px;
+    padding-top: 0px;
+    margin-top: 5px;
 }
 
 .legend-status p span.value {
-  font-size: 250%;
-  font-weight: bold;
+    font-size: 250%;
+    font-weight: bold;
 }
 
 .legend-open.active * {
-  color: #e14747;
-  border-color: #e14747;
+    color: #e14747;
+    border-color: #e14747;
 }
 
 .legend-open.active .display-max {
-  margin-top: -15px;
-  font-size: 75%
+    margin-top: -15px;
+    font-size: 75%
 }
 
 .legend-newly-opened.active * {
-  color: orange;
-  border-color: orange;
+    color: orange;
+    border-color: orange;
 }
 
 .legend-newly-closed.active * {
-  color: #114ab1;
-  border-color: #114ab1;
+    color: #114ab1;
+    border-color: #114ab1;
 }
 
 /* Summary Table */
 
 #summary {
-  background: white;
-  box-shadow: 0px 0px 5px #444;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    background: white;
+    box-shadow: 0px 0px 5px #444;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 /* Links */
 
 #links {
-  background: white;
-  box-shadow: 0px 0px 5px #444;
-  left: 0;
-  right: 0;
+    background: white;
+    box-shadow: 0px 0px 5px #444;
+    left: 0;
+    right: 0;
 }
 
 ul.horiz {
-list-style-type:none;
-text-transform:uppercase;
-margin-bottom:50px;
+    list-style-type: none;
+    text-transform: uppercase;
+    margin-bottom: 50px;
 }
 
 .horiz li {
-display:inline;
-margin-right:25px;
+    display: inline;
+    margin-right: 25px;
 }
-
-
 
 @media only screen and (max-width: 960px) and (min-width: 551px) {
 
-  .legend-open {
-    clear: left;
-  }
+    .legend-open {
+        clear: left;
+    }
 
-  .legend-info {
-    padding: 0 2.5%;
-  }
+    .legend-info {
+        padding: 0 2.5%;
+    }
 
-  .legend-open,
-  .legend-newly-opened,
-  .legend-newly-closed {
-    padding: 0 2.5%;
-  }
+    .legend-open,
+    .legend-newly-opened,
+    .legend-newly-closed {
+        padding: 0 2.5%;
+    }
 
-
-  .legend-info p {
-    margin-bottom: 0;
-    display: inline;
-  }
+    .legend-info p {
+        margin-bottom: 0;
+        display: inline;
+    }
 
 }
 
 @media only screen and (max-width: 700px) and (min-width: 601px) {
-  #header p {
-    font-size: 90%;
-    padding-top: 32px;
-  }
+    #header p {
+        font-size: 90%;
+        padding-top: 32px;
+    }
 }
 
 @media only screen and (max-width: 600px) and (min-width: 551px) {
-  #header p {
-    font-size: 75%;
-    padding-top: 34px;
+    #header p {
+        font-size: 75%;
+        padding-top: 34px;
 
-  }
+    }
 }
 
 @media only screen and (max-width: 550px) {
-  #header {
-    text-align: center;
-  }
+    #header {
+        text-align: center;
+    }
 
-  #header img {
-    margin: 0 auto;
-    padding: 4px 0 0 0;
-    float: none;
-  }
+    #header img {
+        margin: 0 auto;
+        padding: 4px 0 0 0;
+        float: none;
+    }
 
-  #header p {
-    margin: -5px auto 0;
-    padding: 0px 0 0 0;
-    float: none;
-    font-size: 80%;
-  }
+    #header p {
+        margin: -5px auto 0;
+        padding: 0px 0 0 0;
+        float: none;
+        font-size: 80%;
+    }
 
-  #filters {
+    #filters {
 
-  }
+    }
 
-  .legend-newly-opened {
-    clear: left;
-  }
+    .legend-newly-opened {
+        clear: left;
+    }
 
 }
 
@@ -265,77 +262,89 @@ margin-right:25px;
 
 /* top-left and top-right control containers */
 .leaflet-top {
-	/* account for the filter bar */
-	top: 60px;
-	left: 20px;
+    /* account for the filter bar */
+    top: 60px;
+    left: 20px;
 }
 
 .leaflet-popup-close-button {
-  top: 11px;
-  right: 11px;
+    top: 11px;
+    right: 11px;
 }
 
 .leaflet-popup-content h4 {
-  margin: 0px auto 9px;
-  font-size: 13px;
-  line-height: 8px;
+    margin: 0px auto 9px;
+    font-size: 13px;
+    line-height: 8px;
 }
 
 .leaflet-popup-content p {
-  -webkit-margin-before: 0px;
-  -webkit-margin-after: 10px;
-  font-size: 13px;
-  margin: 5px 0 18px;
-  line-height: 16px;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 10px;
+    font-size: 13px;
+    margin: 5px 0 18px;
+    line-height: 16px;
 }
 
 .leaflet-popup-content h5 {
-  margin-bottom: 0px;
-  font-size: 13px;
-  font-weight: bold;
+    margin-bottom: 0px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .leaflet-popup-content span.ago {
-  font-style:italic;
-  color:#777777;
+    font-style: italic;
+    color: #777777;
 }
-div.leaflet-control-center{
-  height:46px;
-  width:46px;
+
+div.leaflet-control-center {
+    height: 46px;
+    width: 46px;
 }
-a.leaflet-control-center{
-  height:46px;
-  width:46px;
-  display:block;
-  position:relative;
-  left:-9px;
-  top:5px;
-  background-image: url(/assets/img/center.png);
-  background-position: 0px 0px;
+
+a.leaflet-control-center {
+    height: 46px;
+    width: 46px;
+    display: block;
+    position: relative;
+    left: -9px;
+    top: 5px;
+    background-image: url(/assets/img/center.png);
+    background-position: 0px 0px;
 }
-a.leaflet-control-center:hover{
-  background-position: 0px 46px;
+
+a.leaflet-control-center:hover {
+    background-position: 0px 46px;
 
 }
+
 .leaflet-popup-content .photo, .leaflet-popup-content .content {
-  float: left;
+    float: left;
 }
 
 .leaflet-popup-content .photo {
-  width: 250px;
-  margin-right: 25px;
+    width: 250px;
+    margin-right: 25px;
 }
 
 .leaflet-popup-content .content {
-  width: 225px;
+    width: 225px;
 }
 
 .leaflet-container .leaflet-control-attribution {
-  margin-bottom: 130px;
+    margin-bottom: 130px;
 }
-
 
 #header h1 {
     font-family: Copperplate, Copperplate Gothic Light, sans-serif;
     margin-top: 12px;
+}
+
+#message {
+    margin-bottom: -10px !important;
+}
+
+#map-wraper {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
 }
