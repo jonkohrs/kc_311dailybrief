@@ -34,6 +34,8 @@ function add_yesterdays_markers(open_or_closed) {
     } else {
         var day = d.getDate() - 1;
     }
+    
+    var day = d.getDate() - 1;
 
     var output = d.getFullYear() + '-' +
         (('' + month).length < 2 ? '0' : '') + month + '-' +
