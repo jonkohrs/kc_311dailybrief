@@ -27,21 +27,38 @@ var marker_orange = new L.icon({iconUrl: 'images/marker_orange.png'});
 var marker_blue = new L.icon({iconUrl: 'images/marker_blue.png'});
 var marker_black = new L.icon({iconUrl: 'images/marker_black.png'});
 
+/* From http://www.nczonline.net/blog/2010/05/25/cross-domain-ajax-with-cross-origin-resource-sharing/ */
+function createCORSRequest(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+        xhr.open(method, url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+    } else {
+        xhr = null;
+    }
+    return xhr;
+}
+
 // create a marker
 
 function add_yesterdays_markers(open_or_closed) {
 
 
-
     var d = new Date();
     var month = d.getMonth() + 1;
-    var day = d.getDate() - 1;
+    var day = d.getDate() - 2;
     var output = d.getFullYear() + '-' +
         (('' + month).length < 2 ? '0' : '') + month + '-' +
         (('' + day).length < 2 ? '0' : '') + day;
-    var yesterday = output + 'T00:00:00'
-    var yesterdays_cases = $.getJSON("http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + open_or_closed + "='" + yesterday + "'"
-        , function (data) {
+    var yesterday = output + 'T00:00:00';
+
+
+    var request = createCORSRequest("get", "http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + open_or_closed + "='" + yesterday + "' and 1=1");
+    if (request) {
+        request.onload = function () {
+            var data = JSON.parse(request.responseText);
             if (data.length === 0) {
                 $('.legend-newly-opened p').html("N/A");
                 $('.legend-newly-closed p').html("N/A");
@@ -89,7 +106,10 @@ function add_yesterdays_markers(open_or_closed) {
             var open_cases_layer = new L.LayerGroup(open_cases_list);
             map.addLayer(open_cases_layer);
 
-        });
+        };
+        request.send();
+    }
+
 }
 
 function add_watched_markers() {
@@ -104,9 +124,11 @@ function add_watched_markers() {
         sep = " or ";
         watch_count++;
     }
-    if ( watch_count ) {
-        var watched_cases = $.getJSON("http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + where
-            , function (data) {
+    if (watch_count) {
+        var request = createCORSRequest("get", "http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + where);
+        if (request) {
+            request.onload = function () {
+                var data = JSON.parse(request.responseText);
                 for (i in data) {
                     if ("address_with_geocode" in data[i]
                         && data[i].address_with_geocode.latitude
@@ -145,75 +167,75 @@ function add_watched_markers() {
                 var wateched_cases_layer = new L.LayerGroup(watched_cases_list);
                 map.addLayer(wateched_cases_layer);
 
-            });
-    }
-}
-
-function displayIt(label, value) {
-    if (label) {
-        if (value) {
-            return '                <span style="color: grey">' + label + '</span> ' + value + '<br/>' + "\n";
-        } else {
-            return '';
-        }
-    } else {
-        if (value) {
-            return '                ' + value + '<br/>' + "\n";
-        } else {
-            return '';
+            };
+            request.send();
         }
     }
+    }
 
-}
-
-$(function () {
-
-    /**
-     * @classDescription - Default settings for this application
-     * @class - Default
-     */
-    var Default = {
-        // Spread Sheet key
-        spread_sheet_key: '15k1-HvcYXck4SGw-icUH2cRKLJX9oWim7ehTEe883Zs'
-    };
-
-
-    /**
-     * Load the projects data from the spread sheet using Tabletop.js https://github.com/jsoma/tabletop
-     * NOTE:
-     *    Spread Sheet needs to be Published from the File menu
-     *    Spread Sheet is readable by anyone in Share
-     *
-     */
-    Tabletop.init({
-        key: Default.spread_sheet_key,
-        simpleSheet: true,
-        callback: function (data, tabletop) {
-
-            if (data[0] && data[0]['Daily Message']) {
-                $("#daily-message").html(data[0]['Daily Message']);
+    function displayIt(label, value) {
+        if (label) {
+            if (value) {
+                return '                <span style="color: grey">' + label + '</span> ' + value + '<br/>' + "\n";
             } else {
-                $("#daily-message").html("NO MESSAGE");
+                return '';
+            }
+        } else {
+            if (value) {
+                return '                ' + value + '<br/>' + "\n";
+            } else {
+                return '';
             }
         }
-    });
 
-    WatchList.init();
+    }
+
+    $(function () {
+
+        /**
+         * @classDescription - Default settings for this application
+         * @class - Default
+         */
+        var Default = {
+            // Spread Sheet key
+            spread_sheet_key: '15k1-HvcYXck4SGw-icUH2cRKLJX9oWim7ehTEe883Zs'
+        };
+
+
+        /**
+         * Load the projects data from the spread sheet using Tabletop.js https://github.com/jsoma/tabletop
+         * NOTE:
+         *    Spread Sheet needs to be Published from the File menu
+         *    Spread Sheet is readable by anyone in Share
+         *
+         */
+        Tabletop.init({
+            key: Default.spread_sheet_key,
+            simpleSheet: true,
+            callback: function (data, tabletop) {
+
+                if (data[0] && data[0]['Daily Message']) {
+                    $("#daily-message").html(data[0]['Daily Message']);
+                } else {
+                    $("#daily-message").html("NO MESSAGE");
+                }
+            }
+        });
+
+        WatchList.init();
 
 // Yesterday
-    add_yesterdays_markers('creation_date');
-    add_yesterdays_markers('closed_date');
-    add_watched_markers();
+        add_yesterdays_markers('creation_date');
+        add_yesterdays_markers('closed_date');
+        add_watched_markers();
 
-    /**
-     * Startup the the ability to save Favorite Cases
-     */
+        /**
+         * Startup the the ability to save Favorite Cases
+         */
 
-    WatchList.updateUI();
-
-
+        WatchList.updateUI();
 
 
-});
+    });
 
 
