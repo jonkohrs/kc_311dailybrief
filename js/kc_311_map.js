@@ -1,13 +1,13 @@
 // initialize the map
 
-//$(window)
-//    .resize(function() { // RESIZE Map div when window size changes
-//        var h = $(window)
-//                .height(), // Solves the 100% height turning to 0px
-//            offsetTop = 250; // Calculate the top offset      // https://github.com/twbs/bootstrap/issues/2475
-//        $('#map')
-//            .css('height', (h - offsetTop));
-//    }).resize();
+$(window)
+    .resize(function() { // RESIZE Map div when window size changes
+        var h = $(window)
+                .height(), // Solves the 100% height turning to 0px
+            offsetTop = 250; // Calculate the top offset      // https://github.com/twbs/bootstrap/issues/2475
+        $('#map')
+            .css('height', (h - offsetTop));
+    }).resize();
 
 var map = new L.Map('map');
 
@@ -48,7 +48,13 @@ function add_yesterdays_markers(open_or_closed) {
 
     var d = new Date();
     var month = d.getMonth() + 1;
-    var day = d.getDate() - 2;
+
+    if ( d.getHours() < 7 ) {
+        var day = d.getDate() - 2;
+    } else {
+        var day = d.getDate() - 1;
+    }
+
     var output = d.getFullYear() + '-' +
         (('' + month).length < 2 ? '0' : '') + month + '-' +
         (('' + day).length < 2 ? '0' : '') + day;
