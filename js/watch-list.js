@@ -55,7 +55,7 @@ var WatchList = {
 
     },
 
-    makeWatchHtml: function (case_id, parcel_id_no) {
+    makeWatchHtml: function (case_id) {
 
         var i = case_id;
 
@@ -71,18 +71,22 @@ var WatchList = {
             html += '<p id="case-id-' + case_id + '">' + this.removeCaseButton(case_id);
         }
 
-        html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://webfusion.kcmo.org/coldfusionapps/ActionCenterRequest/CaseInfo.cfm?CaseID=' + parcel_id_no + '">More</p>';
-
         return html;
 
     },
 
     addCaseButton: function (case_id) {
-        return '<a type="button" class="btn btn-default" onClick="WatchList.addCase(' + case_id + ');" href="#">Watch Case</a>';
+        var html = '<a type="button" class="btn btn-default" onClick="WatchList.addCase(' + case_id + ');" href="#">Watch Case</a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://webfusion.kcmo.org/coldfusionapps/ActionCenterRequest/CaseInfo.cfm?CaseID=' + case_id + '">More</p>';
+
+        return html;
     },
 
     removeCaseButton: function (case_id) {
-        return '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" href="#">Un Watch Case</a>';
+        var html = '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" href="#">Un Watch Case</a>';
+        html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://webfusion.kcmo.org/coldfusionapps/ActionCenterRequest/CaseInfo.cfm?CaseID=' + case_id + '">More</p>';
+
+        return html;
     },
 
 
