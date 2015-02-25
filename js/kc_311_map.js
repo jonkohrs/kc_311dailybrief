@@ -199,7 +199,7 @@ $(function () {
         mapInfo = new L.TileLayer(mapUrl, {maxZoom: 18, attribution: mapAttrib});
 
 // set a default location for the map
-    var kansascity = new L.LatLng(39.0997, -94.5783); // geographical point (longitude and latitude)
+    var kansascity = new L.LatLng(39.0997, -94.5303); // geographical point (longitude and latitude)
     map.setView(kansascity, 13).addLayer(mapInfo);
 
 
