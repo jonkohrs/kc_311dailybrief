@@ -10,7 +10,7 @@ var mapUrl = 'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.jpg',
 
 // set a default location for the map
 var kansascity = new L.LatLng(39.0997, -94.5783); // geographical point (longitude and latitude)
-map.setView(kansascity, 20).addLayer(mapInfo);
+map.setView(kansascity, 13).addLayer(mapInfo);
 var open_cases_list = [];
 var watched_cases_list = [];
 var marker_orange = new L.icon({iconUrl: 'images/marker_orange.png'});
@@ -110,10 +110,11 @@ function add_watched_markers() {
                     var creation_date = parseInt(d.getMonth() + 1) + "-" + d.getDate() + "-" + parseInt(d.getFullYear());
 
                     watch_html += displayIt('Created', creation_date);
-                    watch_html += displayIt('Case ID', data[i].case_id);
-                    watch_html += WatchList.makeWatchHtml(data[i].case_id);
 
                     var caseId = data[i].case_id;
+
+                    watch_html += displayIt('Case ID', caseId);
+                    watch_html += WatchList.makeWatchHtml(caseId);
 
                     var marker = new L.Marker(markerLocation, {icon: marker_black}).bindPopup(watch_html);
 
