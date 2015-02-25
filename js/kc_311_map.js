@@ -55,7 +55,9 @@ function add_yesterdays_markers(open_or_closed) {
             }
 
             for (i in data) {
-                if ("address_with_geocode" in data[i]) {             // KCMO does not always return the geocoded address.
+                if ("address_with_geocode" in data[i]
+                    && data[i].address_with_geocode.latitude
+                    && data[i].address_with_geocode.longitude) {             // KCMO does not always return the geocoded address.
                     var latitude = data[i].address_with_geocode.latitude;
                     var longitude = data[i].address_with_geocode.longitude;
 
@@ -96,46 +98,55 @@ function add_watched_markers() {
 
     var where = '';
     var sep = '';
+    var watch_count = 0;
     for (i in watched_case_ids) {
         where += sep + " case_id = " + watched_case_ids[i];
         sep = " or ";
+        watch_count++;
     }
+    if ( watch_count ) {
+        var watched_cases = $.getJSON("http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + where
+            , function (data) {
+                for (i in data) {
+                    if ("address_with_geocode" in data[i]
+                        && data[i].address_with_geocode.latitude
+                        && data[i].address_with_geocode.longitude
+                    ) {             // KCMO does not always return the geocoded address.
+                        var latitude = data[i].address_with_geocode.latitude;
+                        var longitude = data[i].address_with_geocode.longitude;
 
-    var watched_cases = $.getJSON("http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + where
-        , function (data) {
-            for (i in data) {
-                if ("address_with_geocode" in data[i]) {             // KCMO does not always return the geocoded address.
-                    var latitude = data[i].address_with_geocode.latitude;
-                    var longitude = data[i].address_with_geocode.longitude;
+                        console.log(data[i].address_with_geocode);
+                        console.log(latitude + '|' + longitude);
 
-                    markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
+                        markerLocation = new L.LatLng(parseFloat(latitude), parseFloat(longitude));
 
-                    var watch_html = '';
+                        var watch_html = '';
 
-                    watch_html += displayIt('', data[i].request_type + ' - ' + data[i].status);
-                    watch_html += displayIt('', data[i].street_address);
-                    watch_html += displayIt('Department', data[i].department);
-                    watch_html += displayIt('Work Group', data[i].work_group);
+                        watch_html += displayIt('', data[i].request_type + ' - ' + data[i].status);
+                        watch_html += displayIt('', data[i].street_address);
+                        watch_html += displayIt('Department', data[i].department);
+                        watch_html += displayIt('Work Group', data[i].work_group);
 
-                    var d = new Date(data[i].creation_date);
-                    var creation_date = parseInt(d.getMonth() + 1) + "-" + d.getDate() + "-" + parseInt(d.getFullYear());
+                        var d = new Date(data[i].creation_date);
+                        var creation_date = parseInt(d.getMonth() + 1) + "-" + d.getDate() + "-" + parseInt(d.getFullYear());
 
-                    watch_html += displayIt('Created', creation_date);
+                        watch_html += displayIt('Created', creation_date);
 
-                    var caseId = data[i].case_id;
+                        var caseId = data[i].case_id;
 
-                    watch_html += displayIt('Case ID', caseId);
-                    watch_html += WatchList.makeWatchHtml(caseId);
+                        watch_html += displayIt('Case ID', caseId);
+                        watch_html += WatchList.makeWatchHtml(caseId);
 
-                    var marker = new L.Marker(markerLocation, {icon: marker_black}).bindPopup(watch_html);
+                        var marker = new L.Marker(markerLocation, {icon: marker_black}).bindPopup(watch_html);
 
-                    watched_cases_list.push(marker);
+                        watched_cases_list.push(marker);
+                    }
                 }
-            }
-            var wateched_cases_layer = new L.LayerGroup(watched_cases_list);
-            map.addLayer(wateched_cases_layer);
+                var wateched_cases_layer = new L.LayerGroup(watched_cases_list);
+                map.addLayer(wateched_cases_layer);
 
-        });
+            });
+    }
 }
 
 function displayIt(label, value) {
