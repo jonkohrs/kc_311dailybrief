@@ -1,6 +1,8 @@
 // initialize the map
 var map = new L.Map('map');
 
+var myMap = map;
+
 // configure the map settings
 var mapUrl = 'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.jpg',
     mapAttrib = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Tiles By <a href="http://stamen.com">Stamen</a>',
@@ -189,13 +191,4 @@ $(function () {
 
 });
 
-$(window)
-    .resize(function() { // RESIZE Map div when window size changes
-        var h = $(window)
-                .height(), // Solves the 100% height turning to 0px
-            offsetTop = 250; // Calculate the top offset      // https://github.com/twbs/bootstrap/issues/2475
-        $('#map')
-            .css('height', (h - offsetTop));
 
-    })
-    .resize();
