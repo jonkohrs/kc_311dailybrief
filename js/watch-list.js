@@ -76,14 +76,14 @@ var WatchList = {
     },
 
     addCaseButton: function (case_id) {
-        var html = '<a type="button" class="btn btn-default" onClick="WatchList.addCase(' + case_id + ');" href="#">Watch Case</a>';
+        var html = '<a type="button" class="btn btn-default" onClick="WatchList.addCase(' + case_id + ');" >Watch Case</a>';
         html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://webfusion.kcmo.org/coldfusionapps/ActionCenterRequest/CaseInfo.cfm?CaseID=' + case_id + '">More</p>';
 
         return html;
     },
 
     removeCaseButton: function (case_id) {
-        var html = '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" href="#">Un Watch Case</a>';
+        var html = '<a  type="button" class="btn btn-default" onClick="WatchList.removeCase(' + case_id + ');" >Un Watch Case</a>';
         html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://webfusion.kcmo.org/coldfusionapps/ActionCenterRequest/CaseInfo.cfm?CaseID=' + case_id + '">More</p>';
 
         return html;
@@ -210,6 +210,7 @@ var WatchList = {
 
     getWatchListCasesFromCookie: function () {
         var id_list = String(this.getWatchListCookie());
+
         var favorite_cases = [];
 
         if (id_list.length !== 0) {
@@ -237,14 +238,12 @@ var WatchList = {
     },
 
     getCookieVal: function (offset) {
+
         var endstr = document.cookie.indexOf(";", offset);
         if (endstr == -1)
             endstr = document.cookie.length;
-        return unescape(document.cookie.substring(offset, endstr));
+        return decodeURI(document.cookie.substring(offset, endstr));
     }
 
 }
-
-
-
 
