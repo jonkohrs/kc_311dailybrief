@@ -42,7 +42,7 @@ function add_yesterdays_markers(open_or_closed) {
 
     var watched_case_ids = WatchList.getWatchListCasesFromCookie();
 
-    var request = createCORSRequest("get", "http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + open_or_closed + "='" + yesterday + "' and 1=1");
+    var request = createCORSRequest("get", "http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + open_or_closed + "='" + yesterday + "'");
     if (request) {
         request.onload = function () {
             var data = JSON.parse(request.responseText);
@@ -115,7 +115,7 @@ function add_watched_markers() {
         watch_count++;
     }
     if (watch_count) {
-        var request = createCORSRequest("get", "http://data.kcmo.org/resource/7at3-sxhp.json?$where " + where);
+        var request = createCORSRequest("get", "http://data.kcmo.org/resource/7at3-sxhp.json?$where=" + where);
         if (request) {
             request.onload = function () {
                 var data = JSON.parse(request.responseText);
