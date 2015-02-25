@@ -9,8 +9,8 @@ var mapUrl = 'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.jpg',
     mapInfo = new L.TileLayer(mapUrl, {maxZoom: 18, attribution: mapAttrib});
 
 // set a default location for the map
-var kansascity = new L.LatLng(39.101, -94.583); // geographical point (longitude and latitude)
-map.setView(kansascity, 11).addLayer(mapInfo);
+var kansascity = new L.LatLng(39.0997, -94.5783); // geographical point (longitude and latitude)
+map.setView(kansascity, 20).addLayer(mapInfo);
 var open_cases_list = [];
 var watched_cases_list = [];
 var marker_orange = new L.icon({iconUrl: 'images/marker_orange.png'});
